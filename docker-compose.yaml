@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  opensearch:
+    container_name: opensearch
+    hostname: opensearch
+    build:
+      context: ./opensearch
+    environment:
+      - "DISABLE_SECURITY_PLUGIN=true"
+    volumes:
+      - ${PWD}/opensearch/files/opensearch.yml:/usr/share/opensearch/config/opensearch.yml
+  opensearch-dashboards:
+    container_name: opensearch-dashboards
+    hostname: opensearch-dashboards
+    build:
+      context: ./opensearch-dashboards
+    environment:
+      - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true"
+    volumes:
+      - ${PWD}/opensearch-dashboards/files/opensearch_dashboards.yml:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml
+    ports:
+      - "5601:5601"

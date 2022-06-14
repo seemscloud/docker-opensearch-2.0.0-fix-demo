@@ -1,1 +1,0 @@
-# docker-opensearch-fix-demo
